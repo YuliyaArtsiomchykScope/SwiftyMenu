@@ -345,7 +345,7 @@ extension SwiftyMenu {
     }
     
     private func setupArrowImage() {
-        let spacing = self.selectButton.frame.width - 20 // the amount of spacing to appear between image and title
+        let spacing = self.selectButton.frame.width - 32 // the amount of spacing to appear between image and title
         var imageEdgeInsets = UIEdgeInsets(top: 0, left: CGFloat(spacing), bottom: 0, right: 0)
         if UIView.userInterfaceLayoutDirection(for: selectButton.semanticContentAttribute) == .rightToLeft {
             imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: CGFloat(spacing))
@@ -376,12 +376,12 @@ extension SwiftyMenu {
         }
         selectButton.titleLabel?.font = itemFont ?? UIFont.systemFont(ofSize: 12)
         if UIView.userInterfaceLayoutDirection(for: selectButton.semanticContentAttribute) == .rightToLeft {
-            selectButton.imageEdgeInsets.right = width - 16
-            selectButton.titleEdgeInsets.left = 32
+            selectButton.imageEdgeInsets.right = width - 32
+            selectButton.titleEdgeInsets.left = 12
             selectButton.titleLabel?.lineBreakMode = .byTruncatingHead
         } else {
-            selectButton.imageEdgeInsets.left = width - 16
-            selectButton.titleEdgeInsets.right = 32
+            selectButton.imageEdgeInsets.left = width - 32
+            selectButton.titleEdgeInsets.right = 12
             selectButton.titleLabel?.lineBreakMode = .byTruncatingTail
         }
         selectButton.backgroundColor = menuHeaderBackgroundColor
