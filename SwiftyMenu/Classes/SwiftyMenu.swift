@@ -137,6 +137,9 @@ final public class SwiftyMenu: UIView {
         }
     }
     
+    /// `SwiftyMenu` item text font.
+    public var itemFont: UIFont?
+    
     /// Determine default `SwiftyMenu` placeholder text.
     @IBInspectable public var placeHolderText: String? {
         didSet {
@@ -262,7 +265,7 @@ extension SwiftyMenu: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "OptionCell", for: indexPath)
             cell.textLabel?.text = items[indexPath.row].displayableValue
             cell.textLabel?.textColor = itemTextColor
-            cell.textLabel?.font = UIFont.systemFont(ofSize: 12)
+            cell.textLabel?.font = itemFont ?? UIFont.systemFont(ofSize: 12)
             cell.tintColor = itemTextColor
             cell.backgroundColor = rowBackgroundColor
             cell.accessoryType = selectedIndecis[indexPath.row] != nil ? .checkmark : .none
@@ -272,7 +275,7 @@ extension SwiftyMenu: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "OptionCell", for: indexPath)
             cell.textLabel?.text = items[indexPath.row].displayableValue
             cell.textLabel?.textColor = itemTextColor
-            cell.textLabel?.font = UIFont.systemFont(ofSize: 12)
+            cell.textLabel?.font = itemFont ?? UIFont.systemFont(ofSize: 12)
             cell.tintColor = itemTextColor
             cell.backgroundColor = rowBackgroundColor
             cell.accessoryType = indexPath.row == selectedIndex ? .checkmark : .none
@@ -371,7 +374,7 @@ extension SwiftyMenu {
             selectButton.setTitle(placeHolderText, for: .normal)
             selectButton.layoutIfNeeded()
         }
-        selectButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        selectButton.titleLabel?.font = itemFont ?? UIFont.systemFont(ofSize: 12)
         if UIView.userInterfaceLayoutDirection(for: selectButton.semanticContentAttribute) == .rightToLeft {
             selectButton.imageEdgeInsets.right = width - 16
             selectButton.titleEdgeInsets.left = 32
@@ -384,7 +387,7 @@ extension SwiftyMenu {
         selectButton.backgroundColor = menuHeaderBackgroundColor
         
         let frameworkBundle = Bundle(for: SwiftyMenu.self)
-        let image = UIImage(named: "downArrow", in: frameworkBundle, compatibleWith: nil)
+        let image = arrow ?? UIImage(named: "downArrow", in: frameworkBundle, compatibleWith: nil)
         arrow = image
         
         if arrow == nil {
